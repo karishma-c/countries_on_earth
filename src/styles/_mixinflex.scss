@@ -1,0 +1,34 @@
+@mixin flex($direction,$main-axis,$cross-axis) {
+    display: flex;
+    flex-flow: $direction wrap;
+    @if $direction == row {
+        justify-content: $main-axis;
+        align-items: $cross-axis;
+    }
+    @else
+    {
+        justify-content: $cross-axis;
+        align-items:  $main-axis;
+    }
+}
+
+
+
+
+// & input , & select{
+//     padding:15px 0 15px 8px;
+//     border: none;
+//     border-radius: $border-radius;
+//     box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
+// }
+// & input {
+//     width:40% ;
+//     font-size:$font-size3;
+//     margin: 0 0 20px 30px;
+// }
+// & select{
+//     width:50%;
+//     color: $header-color;
+//     background-color: $secondary-color;
+//     font-size: $font-size3;
+// }

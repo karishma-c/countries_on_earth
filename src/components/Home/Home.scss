@@ -1,0 +1,120 @@
+@import './../../styles/mixinflex';
+@import './../../styles/variables';
+
+.mainContainer {
+    font-family: $font-family;
+    margin: 0;
+    width: 100%;
+    background-color: $primary-color;
+
+    & .headerSection {
+        @include flex(row, space-between, center);
+        flex-wrap: nowrap;
+        max-width: 100%;
+        margin: 0 auto 20px;
+        background-color: $secondary-color;
+        box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
+    
+        & .heading {
+            font-size: $font-size1;
+            font-weight: $font-weight4;
+            margin: 15px  0 15px 60px;
+            color: $header-color;
+        }
+        
+        & h3 {
+            & .gitLink {
+                text-decoration: none;
+                color: $header-color;
+                &:hover {
+                    border-bottom: 2px solid $header-color;
+                }
+            }
+
+            #light .gitLink {
+                color: $header-color;
+            }
+
+            #dark .gitLink {
+                color: $header-color1;
+            }
+        }
+
+        & #switchMode {
+            @include flex(row, space-between, center);
+            flex-wrap: nowrap;
+            font-family: $font-family;
+            font-size: $font-size2;
+            font-weight: $font-weight4;
+            color: $header-color;
+            margin: 15px 60px 15px 0;
+            cursor: pointer;
+            border: none;
+            background-color: $secondary-color;
+            & .moonImage {
+                width: 30px;
+                height: 30px;
+                padding: 0 5px 0 0;
+            }
+            & .sunImage {
+                width: 24px;
+                height: 24px;
+                padding: 0 8px 0 0;
+            }
+            & .Icon {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+    }
+
+    & .contentSection {
+        margin: 0;
+        width: inherit;
+        // @include flex(row, space-between,center);
+        // flex-wrap: nowrap;
+    }
+
+}
+
+#light .mainContainer {
+    background-color: $primary-color;
+}
+#dark .mainContainer {
+    background-color: $primary-color1;
+}
+
+#light .headerSection {
+    background-color: $secondary-color;
+}
+#dark .headerSection {
+    background-color: $secondary-color1; 
+}
+
+#light .heading {
+    color: $header-color;
+}
+#dark .heading {
+    color: $header-color1;
+}
+
+#light .gitLink {
+    color: $header-color;
+}
+#dark .gitLink {
+    color: $header-color1;
+}
+
+#light #switchMode {
+    border: none;
+    color: $header-color;
+    background-color: $secondary-color;
+}
+#dark #switchMode {
+    border: none;
+    color: $header-color1;
+    background-color: $secondary-color1;
+}
+

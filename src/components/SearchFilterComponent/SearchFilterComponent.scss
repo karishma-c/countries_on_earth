@@ -1,0 +1,60 @@
+@import './../../styles/mixinflex';
+@import './../../styles/variables';
+
+.searchFilter {
+    @include flex(column, center, center);
+    & .searchFilterInput {
+        width: 100%;
+        @include flex(row, space-between, center);
+        flex-wrap: nowrap;
+        & .search-element, & .filter-element {
+            width: inherit;
+            & .searchInputField, & .selectInputField {
+                font-size:$font-size3;
+                margin: 30px 25px 20px 30px;
+                padding:15px 0 15px 15px;
+                border: none;
+                border-radius: $border-radius;
+                box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
+                background-color: $secondary-color;
+                color: $input-color;
+            }
+            & .selectInputHeading {
+                font-size: $font-size2;
+                color: $header-color;
+            }
+            & .searchInputField {
+                width: 70%;
+                float: left;
+            }
+            & .selectInputField {
+                width: 40%;
+                float: right;
+            }
+        } 
+    }
+   
+    & .cardContainer {
+        margin: 30px 0;
+        @include flex(row, space-between, flex-start);
+        flex-wrap: wrap;
+    }
+}
+
+#light .searchInputField {
+    background-color: $secondary-color;
+    color: $input-color;
+}
+#dark .searchInputField {
+    background-color: $secondary-color1;
+    color: $input-color1;
+}
+
+#light .selectInputField {
+    background-color: $secondary-color;
+    color: $input-color;
+}
+#dark .selectInputField {
+    background-color: $secondary-color1;
+    color: $input-color1;
+}
