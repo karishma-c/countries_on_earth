@@ -24,7 +24,7 @@ const Home = () => {
         <div className="mainContainer">
             <header className="headerSection">
                 <h1 className="heading">Where in the world?</h1>
-                <h3><a className="gitLink" href="https://github.com/karishma-c/webpage-using-api" target="_blank">GitHub</a></h3>
+                <h3><a className="gitLink" href="https://github.com/karishma-c/reactjs-from-scratch" target="_blank">GitHub</a></h3>
                 <button id="switchMode" onClick={switchMode} >
                     {
                         enableDarkTheme === "light" ?
