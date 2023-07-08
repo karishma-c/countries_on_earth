@@ -39,6 +39,28 @@
         @include flex(row, space-between, flex-start);
         flex-wrap: wrap;
     }
+
+    @media screen and (max-width:480px) {
+        & .searchFilterInput {
+            @include flex(column, flex-start, flex-start);
+            flex-wrap: wrap;
+            & .search-element, & .filter-element {
+                & .searchInputField, & .selectInputField {
+                    margin: 15px 0 15px 25px;
+                }
+            }
+            & .filter-element {
+                & .selectInputField {
+                    float: left;
+                }
+            }
+        }
+        & .cardContainer {
+            margin: 30px auto;
+            @include flex(column, center, center);
+            flex-wrap: nowrap;
+        }
+    }
 }
 
 #light .searchInputField {

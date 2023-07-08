@@ -30,14 +30,6 @@
                     border-bottom: 2px solid $header-color;
                 }
             }
-
-            #light .gitLink {
-                color: $header-color;
-            }
-
-            #dark .gitLink {
-                color: $header-color1;
-            }
         }
 
         & #switchMode {
@@ -77,7 +69,32 @@
         // flex-wrap: nowrap;
     }
 
+    @media screen and (max-width:480px) {
+         
+        & .headerSection {
+            & .heading, & .gitLink, & #switchMode {
+                font-size: $font-size3;
+                margin: 0 10px 0;
+            }
+            & h3 {
+                margin: 20px 0;
+            }
+            & #switchMode {
+                & .moonImage {
+                    width: 20px;
+                    height: 20px;
+                }
+                & .sunImage {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+
 }
+
+
 
 #light .mainContainer {
     background-color: $primary-color;
