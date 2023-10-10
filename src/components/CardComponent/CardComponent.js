@@ -22,11 +22,12 @@ const CardComponent = ({ countryDetails }) => {
             {
                 showModal ?
                     <Modal>
+                        <span className="closeButton" onClick={closeModal}>
+                            x
+                        </span>
                         <div className="modalCard" >
-                            <span className="closeButton" onClick={closeModal}>
-                                x
-                            </span>
-                            <div className="flagImage">
+                            
+                            <div className="cardFlagImage">
                                 <img src={selectedCountry.flags.png} alt="country" />
                             </div>
                             <h3 className="countryName"> {selectedCountry.name.common}</h3>
