@@ -31,18 +31,17 @@
 
         & .closeButton {
             cursor: pointer;
-            margin: 10px 0;
-            font-size: 25px;
-            font-weight: 600;
-            color: $primary-color;
-            background-color: $primary-color1;
-            border-radius: 50px;
+            float: right;
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            font-weight: $font-weight2;
+            color: $primary-color1;
             padding: 5px 12px;
             font-family: 'Courier New', Courier, monospace;
         }
 
         & .modalCard {
-            margin: 30px 20px;
+            margin: 60px 20px 30px;
             width: 300px;
             height: 400px;
             background-color: $secondary-color;
@@ -71,8 +70,12 @@
                 margin: 30px 0 20px;
                 padding: 0 10px 0 20px;
             }
+
+            .currency {
+                @include flex(row, space-between, center);
+            }
             
-            & .population, & .countryRegion, & .countryCapital, & .nativeName, & .subRegion, & .domain, & .currency, & .languages {
+            & .population, & .countryRegion, & .countryCapital, & .countrySubRegion, & .countryBorders {
                 font-size: $font-size3;
                 font-weight: $font-weight1;
                 padding: 0 0 8px 20px;
@@ -90,12 +93,10 @@
 }
 
 #light .closeButton {
-    background-color: $primary-color1;
-    color: $primary-color;
+    color: $primary-color1;
 }
 #dark .closeButton {
-    background-color: $secondary-color1;
-    color: $secondary-color;
+    color: $primary-color;
 }
 
 #light .modalCard {

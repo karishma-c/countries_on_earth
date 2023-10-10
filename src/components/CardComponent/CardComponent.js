@@ -6,7 +6,7 @@ const CardComponent = ({ countryDetails }) => {
 
     const [showModal, setShowModal] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState("");
-
+    
     const handleModal = (countryData) => {
         setShowModal(true);
         setSelectedCountry(countryData);
@@ -21,10 +21,12 @@ const CardComponent = ({ countryDetails }) => {
         <>
             {
                 showModal ?
+                
                     <Modal>
                         <span className="closeButton" onClick={closeModal}>
                             x
                         </span>
+                       {console.log(selectedCountry)}
                         <div className="modalCard" >
                             
                             <div className="cardFlagImage">
@@ -34,6 +36,17 @@ const CardComponent = ({ countryDetails }) => {
                             <h5 className="population"> <b>Population: </b>{selectedCountry.population}</h5>
                             <h5 className="countryRegion"> <b>Region: </b>{selectedCountry.region}</h5>
                             <h5 className="countryCapital"> <b>Capital: </b>{selectedCountry.capital || '-'}</h5>
+                            <h5 className="countrySubRegion"> <b>SubRegion: </b>{selectedCountry.subregion || '-'}</h5>
+                            <h5 className="countryBorders"> <b>Borders: </b>
+                                {
+                                    selectedCountry.borders ? 
+                                        selectedCountry.borders.map(border => {
+                                           return border  
+                                        }).join(',')
+                                    :
+                                    '-'    
+                                }
+                            </h5>
                         </div>
                     </Modal>
                 :
