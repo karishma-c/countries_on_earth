@@ -32,7 +32,10 @@ const SearchFilterComponent = ({ searchData }) => {
                 country
                 .name.common
                 .toLowerCase()
-                .includes(searchValue.toLowerCase()) 
+                .includes(searchValue.toLowerCase()) ||
+                country.region
+                .toLowerCase()
+                .includes(searchValue.toLowerCase())
             )
         }
     )
