@@ -108,33 +108,16 @@
     color: $header-color1;
 }  
     
-  
-  
-//   .optionsName {
-//     margin: 10px 10px 10px 20px;
-//   }
-  
-//   .options, .subOptions {
-//     font-size: 18px;
-//   }
-//   /* .mobileFilterOptions {
-//     height: 100%;
-    
-//   } */
-//   .mobileSubOptions {
-//     font-size: 16px;
-//     font-weight: 400;
-//   }
-  
-//   .options {
-//     font-weight: 600;
-//     margin: 20px 0 10px 20px;
-//   }
-    
-//   .bottom{
-//     max-width:100%! important;
-//     width:100%;
-//     position:fixed;
-//     bottom:0;
-//     padding:16px !important;
-//   }
+@media (min-width: 320px) and (max-width: 375px) {
+
+    .modalCard {
+        width: 280px;
+        margin-left: 5px !important;
+        margin-right: 5px !important;
+
+        & .cardFlagImage {
+            width: 280px;
+        }
+    }
+}
+
