@@ -2,18 +2,12 @@ import React, { useState } from "react";
 import Modal from './../Modal/Modal';
 import './Table.scss';
 
-const Table = ({ tableRowData }) => {
+const Table = ({ children }) => {
 
     // const [showCard, setShowCard] = useState(false);
     // const [selectedRow, setSelectedRow] = useState("");
 
-    let tableHeader = [
-        "Flag",
-        "Country Name", 
-        "Capital",
-        "Population",
-        "Region"
-    ]
+    
 
     // const showDetails = (rowData) => {
     //     setShowCard(true);
@@ -23,46 +17,11 @@ const Table = ({ tableRowData }) => {
     // const closeModal = () => {
     //     setShowCard(false);
     // }
-   
-    const renderTableHeader = tableHeader.map((rowHeader,index) => {
-        return  (
-            <th key={index}>{rowHeader}</th>
-        )    
-    })
-
-    // const renderTableRow = tableRowData.map((rowData,index) => {
-    //     return (
-    //         <tr key={index} className="tableRow" onClick={() => showDetails(rowData)} >
-    //             <td>
-    //                 <img src={rowData.flags.png} alt="country" />
-    //             </td>
-    //             <td>{rowData.name.common}</td>
-    //             <td>{rowData.capital}</td>
-    //             <td>{rowData.population}</td>
-    //             <td>{rowData.region}</td>
-    //         </tr>
-    //     )
-    // })
     
     return (
         <div className="tableSection">
             <table className="table">
-                <thead>
-                    <tr>
-                    {renderTableHeader}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr className="tableRow" >
-                        <td>
-                            <img src={tableRowData.flags.png} alt="country" />
-                        </td>
-                        <td>{tableRowData.name.common}</td>
-                        <td>{tableRowData.capital}</td>
-                        <td>{tableRowData.population}</td>
-                        <td>{tableRowData.region}</td>
-                    </tr>
-                </tbody>
+                {children}
             </table>
             {/* {
                 showCard && 

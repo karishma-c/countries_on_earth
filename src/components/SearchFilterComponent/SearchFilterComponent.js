@@ -1,13 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CardComponent from "../CardComponent/CardComponent";
 import Table from './../Table/Table';
+import Modal from './../Modal/Modal';
 import './SearchFilterComponent.scss';
 
 const SearchFilterComponent = ({ searchData }) => {
 
     const [searchValue, setSearchValue] = useState("");
     const [selectValue, setSelectValue] = useState("");
-    const [selectView, setSelectView] = useState("Card View")
+    const [selectView, setSelectView] = useState("Card View");
+    const [screenSize, setScreenSize] = useState(window.innerWidth);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedCountry, setSelectedCountry] = useState("");
+
+    let tableHeader = [
+        "Flag",
+        "Country Name", 
+        "Capital",
+        "Population",
+        "Region"
+    ]
+
+    const renderTableHeader = tableHeader.map((rowHeader,index) => {
+        return  (
+            <th key={index}>{rowHeader}</th>
+        )    
+    })
 
     const handleSearchChange = e => {
         setSearchValue(e.target.value);
@@ -20,6 +38,15 @@ const SearchFilterComponent = ({ searchData }) => {
     const handleSelectView = e => {
         setSelectView(e.target.value);
     };
+
+    const handleModal = (countryData) => {
+        setShowModal(true);
+        setSelectedCountry(countryData)
+    }
+
+    const closeModal = () => {
+        setShowModal(false);
+    }
 
     const filteredCountry = searchData.filter(
         country => {
@@ -46,6 +73,17 @@ const SearchFilterComponent = ({ searchData }) => {
         }
     )
 
+    const setDimension = () => {
+        setScreenSize(window.innerWidth);
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", setDimension);
+        return () => {
+            window.removeEventListener("resize", setDimension);
+        };
+    }, [screenSize]);
+
     return (
         <div className='searchFilter'>
             <div className="searchFilterInput">
@@ -57,12 +95,15 @@ const SearchFilterComponent = ({ searchData }) => {
                         onChange = {handleSearchChange}
                     />
                 </div>
-                <div className="viewElement">
-                    <select className="selectViewField" value={selectView} onChange={handleSelectView}>
-                        <option value="Card View">Card View</option>
-                        <option value="Table View">Table View</option>
-                    </select>
-                </div>
+                {
+                    screenSize >= 700 &&
+                    <div className="viewElement">
+                        <select className="selectViewField" value={selectView} onChange={handleSelectView}>
+                            <option value="Card View">Card View</option>
+                            <option value="Table View">Table View</option>
+                        </select>
+                    </div>
+                }
                 <div className='filter-element'>
                     <select className="selectInputField" value={selectValue} onChange={handleSelectChange}>
                         <option value="">Filter By Region</option>
@@ -78,14 +119,73 @@ const SearchFilterComponent = ({ searchData }) => {
             <div className="cardContainer">
                 {
                     selectView == "Table View" ?
-                        selectValue ?
-                        filteredCountry.map(countryDetails => {
-                            return  <Table tableRowData={countryDetails} /> 
-                        })
-                        :
-                        searchedCountry.map(countryDetails => {
-                            return  <Table tableRowData={countryDetails} /> 
-                        })  
+                        <Table>
+                            <thead>
+                                <tr>
+                                    {renderTableHeader}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    selectValue ?
+                                    filteredCountry.map(countryDetails => {
+                                        return  <tr className="tableRow" onClick={() => handleModal(countryDetails)} >
+                                            <td>
+                                                <img src={countryDetails.flags.png} alt="country" />
+                                            </td>
+                                            <td>{countryDetails.name.common}</td>
+                                            <td>{countryDetails.capital}</td>
+                                            <td>{countryDetails.population}</td>
+                                            <td>{countryDetails.region}</td>
+                                        </tr>
+                                    })
+                                    :
+                                    searchedCountry.map(countryDetails => {
+                                        return  <tr className="tableRow" onClick={() => handleModal(countryDetails)} >
+                                            <td>
+                                                <img src={countryDetails.flags.png} alt="country" />
+                                            </td>
+                                            <td>{countryDetails.name.common}</td>
+                                            <td>{countryDetails.capital}</td>
+                                            <td>{countryDetails.population}</td>
+                                            <td>{countryDetails.region}</td>
+                                        </tr>
+                                    })
+                                }
+                            </tbody>
+                            {
+                                showModal && 
+                                <Modal>
+                                    <span className="closeButton" onClick={closeModal}>
+                                        x
+                                    </span>
+                                    <div className="modalCard" >
+                                        
+                                        <div className="cardFlagImage">
+                                            <img src={selectedCountry.flags.png} alt="country" />
+                                        </div>
+                                        <h3 className="countryName"> {selectedCountry.name.common}</h3>
+                                        <h5 className="population"> <b>Population: </b>{selectedCountry.population}</h5>
+                                        <h5 className="countryRegion"> <b>Region: </b>{selectedCountry.region}</h5>
+                                        <h5 className="countryCapital"> <b>Capital: </b>{selectedCountry.capital || '-'}</h5>
+                                        <h5 className="countrySubRegion"> <b>SubRegion: </b>{selectedCountry.subregion || '-'}</h5>
+                                        <div className="countryBorders"> <b>Borders: </b>
+                                            <h5 className="borders">
+                                                {
+                                                    selectedCountry.borders ? 
+                                                        selectedCountry.borders.map(border => {
+                                                            return border
+                                                        }).join(',')
+                                                    :
+                                                    '-'    
+                                                }
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </Modal>
+                            }
+                        </Table>
+                          
                     :
                     selectValue ?
                     filteredCountry.map(countryDetails => {

@@ -26,7 +26,6 @@ const CardComponent = ({ countryDetails }) => {
                         <span className="closeButton" onClick={closeModal}>
                             x
                         </span>
-                       {console.log(selectedCountry)}
                         <div className="modalCard" >
                             
                             <div className="cardFlagImage">
