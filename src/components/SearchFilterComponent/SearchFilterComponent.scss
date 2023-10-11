@@ -7,9 +7,9 @@
         width: 100%;
         @include flex(row, space-between, center);
         flex-wrap: nowrap;
-        & .search-element, & .filter-element {
+        & .search-element, & .filter-element, & .viewElement {
             width: inherit;
-            & .searchInputField, & .selectInputField {
+            & .searchInputField, & .selectInputField, & .selectViewField {
                 font-size:$font-size3;
                 margin: 30px 25px 20px 30px;
                 padding:15px 0 15px 15px;
@@ -24,12 +24,15 @@
                 color: $header-color;
             }
             & .searchInputField {
-                width: 70%;
+                width: 80%;
                 float: left;
             }
             & .selectInputField {
-                width: 40%;
+                width: 60%;
                 float: right;
+            }
+            & .selectViewField {
+                width: 50%;
             }
         } 
     }

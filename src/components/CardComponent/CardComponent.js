@@ -37,16 +37,18 @@ const CardComponent = ({ countryDetails }) => {
                             <h5 className="countryRegion"> <b>Region: </b>{selectedCountry.region}</h5>
                             <h5 className="countryCapital"> <b>Capital: </b>{selectedCountry.capital || '-'}</h5>
                             <h5 className="countrySubRegion"> <b>SubRegion: </b>{selectedCountry.subregion || '-'}</h5>
-                            <h5 className="countryBorders"> <b>Borders: </b>
-                                {
-                                    selectedCountry.borders ? 
-                                        selectedCountry.borders.map(border => {
-                                           return border  
-                                        }).join(',')
-                                    :
-                                    '-'    
-                                }
-                            </h5>
+                            <div className="countryBorders"> <b>Borders: </b>
+                                <h5 className="borders">
+                                    {
+                                        selectedCountry.borders ? 
+                                            selectedCountry.borders.map(border => {
+                                                return border
+                                            }).join(',')
+                                        :
+                                        '-'    
+                                    }
+                                </h5>
+                            </div>
                         </div>
                     </Modal>
                 :

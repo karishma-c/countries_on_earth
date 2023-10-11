@@ -43,7 +43,7 @@
         & .modalCard {
             margin: 60px 20px 30px;
             width: 300px;
-            height: 400px;
+            height: 420px;
             background-color: $secondary-color;
             color: $header-color;
             box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
@@ -70,16 +70,23 @@
                 margin: 30px 0 20px;
                 padding: 0 10px 0 20px;
             }
-
-            .currency {
-                @include flex(row, space-between, center);
-            }
             
             & .population, & .countryRegion, & .countryCapital, & .countrySubRegion, & .countryBorders {
                 font-size: $font-size3;
                 font-weight: $font-weight1;
                 padding: 0 0 8px 20px;
                 margin: 0;
+            }
+
+            & .countryBorders {
+                @include flex(row,flex-start,center);
+                & b {
+                    padding-bottom: 5px !important;
+                }
+            }
+            .borders {
+                margin: 0;
+                font-weight: $font-weight1;
             }
         }
     }

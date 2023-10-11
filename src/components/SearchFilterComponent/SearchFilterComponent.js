@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import CardComponent from "../CardComponent/CardComponent";
+import Table from './../Table/Table';
 import './SearchFilterComponent.scss';
 
 const SearchFilterComponent = ({ searchData }) => {
 
     const [searchValue, setSearchValue] = useState("");
     const [selectValue, setSelectValue] = useState("");
+    const [selectView, setSelectView] = useState("Card View")
 
     const handleSearchChange = e => {
         setSearchValue(e.target.value);
@@ -13,6 +15,10 @@ const SearchFilterComponent = ({ searchData }) => {
 
     const handleSelectChange = e => {
         setSelectValue(e.target.value);
+    };
+
+    const handleSelectView = e => {
+        setSelectView(e.target.value);
     };
 
     const filteredCountry = searchData.filter(
@@ -51,6 +57,12 @@ const SearchFilterComponent = ({ searchData }) => {
                         onChange = {handleSearchChange}
                     />
                 </div>
+                <div className="viewElement">
+                    <select className="selectViewField" value={selectView} onChange={handleSelectView}>
+                        <option value="table">Card View</option>
+                        <option value="card">Table View</option>
+                    </select>
+                </div>
                 <div className='filter-element'>
                     <select className="selectInputField" value={selectValue} onChange={handleSelectChange}>
                         <option value="">Filter By Region</option>
@@ -64,7 +76,8 @@ const SearchFilterComponent = ({ searchData }) => {
                 </div>
             </div>
             <div className="cardContainer">
-            {
+                <Table tableRowData={searchData} />
+            {/* {
                 selectValue ?
                 filteredCountry.map(countryDetails => {
                     return <CardComponent countryDetails={countryDetails} />
@@ -73,7 +86,7 @@ const SearchFilterComponent = ({ searchData }) => {
                 searchedCountry.map(countryDetails => {
                     return <CardComponent countryDetails={countryDetails} />
                 })
-            }
+            } */}
             </div>
         </div>
     )
