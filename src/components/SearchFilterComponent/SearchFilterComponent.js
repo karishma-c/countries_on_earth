@@ -118,7 +118,8 @@ const SearchFilterComponent = ({ searchData }) => {
             </div>
             <div className="cardContainer">
                 {
-                    selectView == "Table View" ?
+                    (selectView == "Table View" && screenSize >= 700) ?
+                        
                         <Table>
                             <thead>
                                 <tr>
@@ -130,8 +131,8 @@ const SearchFilterComponent = ({ searchData }) => {
                                     selectValue ?
                                     filteredCountry.map(countryDetails => {
                                         return  <tr className="tableRow" onClick={() => handleModal(countryDetails)} >
-                                            <td>
-                                                <img src={countryDetails.flags.png} alt="country" />
+                                            <td className="tableColumn">
+                                                <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
                                             <td>{countryDetails.name.common}</td>
                                             <td>{countryDetails.capital}</td>
@@ -142,8 +143,8 @@ const SearchFilterComponent = ({ searchData }) => {
                                     :
                                     searchedCountry.map(countryDetails => {
                                         return  <tr className="tableRow" onClick={() => handleModal(countryDetails)} >
-                                            <td>
-                                                <img src={countryDetails.flags.png} alt="country" />
+                                            <td className="tableColumn">
+                                                <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
                                             <td>{countryDetails.name.common}</td>
                                             <td>{countryDetails.capital}</td>
@@ -185,7 +186,6 @@ const SearchFilterComponent = ({ searchData }) => {
                                 </Modal>
                             }
                         </Table>
-                          
                     :
                     selectValue ?
                     filteredCountry.map(countryDetails => {
