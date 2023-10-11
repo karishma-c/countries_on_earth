@@ -7,9 +7,9 @@
         width: 100%;
         @include flex(row, space-between, center);
         flex-wrap: nowrap;
-        & .search-element, & .filter-element, & .viewElement {
+        & .searchElement, & .filterElement, & .viewElement, & .sortElement {
             width: inherit;
-            & .searchInputField, & .selectInputField, & .selectViewField {
+            & .searchInputField, & .selectInputField, & .selectViewField, & .selectSortField {
                 font-size:$font-size3;
                 margin: 30px 25px 20px 30px;
                 padding:15px 0 15px 15px;
@@ -25,13 +25,14 @@
             }
             & .searchInputField {
                 width: 80%;
-                float: left;
             }
             & .selectInputField {
                 width: 60%;
-                float: right;
             }
             & .selectViewField {
+                width: 50%;
+            }
+            & .selectSortField {
                 width: 50%;
             }
         } 
@@ -80,6 +81,24 @@
     color: $input-color;
 }
 #dark .selectInputField {
+    background-color: $secondary-color1;
+    color: $input-color1;
+}
+
+#light .selectSortField {
+    background-color: $secondary-color;
+    color: $input-color;
+}
+#dark .selectSortField {
+    background-color: $secondary-color1;
+    color: $input-color1;
+}
+
+#light .selectViewField {
+    background-color: $secondary-color;
+    color: $input-color;
+}
+#dark .selectViewField {
     background-color: $secondary-color1;
     color: $input-color1;
 }

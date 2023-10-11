@@ -9,6 +9,7 @@ const SearchFilterComponent = ({ searchData }) => {
     const [searchValue, setSearchValue] = useState("");
     const [selectValue, setSelectValue] = useState("");
     const [selectView, setSelectView] = useState("Card View");
+    const [selectSort, setSelectSort] = useState("");
     const [screenSize, setScreenSize] = useState(window.innerWidth);
     const [showModal, setShowModal] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState("");
@@ -23,7 +24,7 @@ const SearchFilterComponent = ({ searchData }) => {
 
     const renderTableHeader = tableHeader.map((rowHeader,index) => {
         return  (
-            <th key={index}>{rowHeader}</th>
+            <th className="tableHeader" key={index}>{rowHeader}</th>
         )    
     })
 
@@ -38,6 +39,10 @@ const SearchFilterComponent = ({ searchData }) => {
     const handleSelectView = e => {
         setSelectView(e.target.value);
     };
+
+    const handleSort = e => {
+        setSelectSort(e.target.value);
+    }
 
     const handleModal = (countryData) => {
         setShowModal(true);
@@ -87,13 +92,20 @@ const SearchFilterComponent = ({ searchData }) => {
     return (
         <div className='searchFilter'>
             <div className="searchFilterInput">
-                <div className='search-element'>
+                <div className='searchElement'>
                     <input
                         className="searchInputField"
                         type = "search" 
                         placeholder='Search for country...'
                         onChange = {handleSearchChange}
                     />
+                </div>
+                <div className="sortElement">
+                    <select className="selectSortField" value={selectSort} onChange={handleSort}>
+                        <option value="">Select Sort</option>
+                        <option value="Ascending">Ascending</option>
+                        <option value="Descending">Descending</option>
+                    </select>
                 </div>
                 {
                     screenSize >= 700 &&
@@ -104,7 +116,7 @@ const SearchFilterComponent = ({ searchData }) => {
                         </select>
                     </div>
                 }
-                <div className='filter-element'>
+                <div className='filterElement'>
                     <select className="selectInputField" value={selectValue} onChange={handleSelectChange}>
                         <option value="">Filter By Region</option>
                         <option value="africa">Africa</option>
@@ -131,25 +143,25 @@ const SearchFilterComponent = ({ searchData }) => {
                                     selectValue ?
                                     filteredCountry.map(countryDetails => {
                                         return  <tr className="tableRow" onClick={() => handleModal(countryDetails)} >
-                                            <td className="tableColumn">
+                                            <td className="tableCell" id="tableColumn">
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
-                                            <td>{countryDetails.name.common}</td>
-                                            <td>{countryDetails.capital}</td>
-                                            <td>{countryDetails.population}</td>
-                                            <td>{countryDetails.region}</td>
+                                            <td className="tableCell">{countryDetails.name.common}</td>
+                                            <td className="tableCell">{countryDetails.capital}</td>
+                                            <td className="tableCell">{countryDetails.population}</td>
+                                            <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
                                     })
                                     :
                                     searchedCountry.map(countryDetails => {
                                         return  <tr className="tableRow" onClick={() => handleModal(countryDetails)} >
-                                            <td className="tableColumn">
+                                            <td className="tableCell" id="tableColumn">
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
-                                            <td>{countryDetails.name.common}</td>
-                                            <td>{countryDetails.capital}</td>
-                                            <td>{countryDetails.population}</td>
-                                            <td>{countryDetails.region}</td>
+                                            <td className="tableCell">{countryDetails.name.common}</td>
+                                            <td className="tableCell">{countryDetails.capital}</td>
+                                            <td className="tableCell">{countryDetails.population}</td>
+                                            <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
                                     })
                                 }

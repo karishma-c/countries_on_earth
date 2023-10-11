@@ -2,19 +2,22 @@
 @import './../../styles//variables';
 
 .tableSection {
-    margin: 50px auto;
+    margin: 30px auto;
+    font-family: $font-family;
 
     & .table {
         border-collapse: collapse;
+        background-color: $secondary-color;
+        color: $header-color;
         width: 100%;
 
-        & td, & th {
-            border: 1px solid #dddddd;
+        & .tableCell, & .tableHeader {
+            border: 1px solid $primary-color1;
             text-align: left;
             padding: 8px 12px;
         }
         & .tableRow {
-            & .tableColumn {
+            & #tableColumn {
                 width: 100px;
                 height: 80px;
                 & .rowFlagImage {
@@ -25,4 +28,20 @@
             }
         }
     }
+}
+
+#light .table {
+    background-color: $secondary-color;
+    color: $header-color;
+}
+#dark .table {
+    background-color: $secondary-color1;
+    color: $header-color1;
+}
+
+#light .tableHeader #light .tableCell {
+    border: 1px solid $primary-color1;
+}
+#dark .tableHeader, #dark .tableCell {
+    border: 1px solid $primary-color;
 }
