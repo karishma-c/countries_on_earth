@@ -4,8 +4,9 @@ import './Table.scss';
 
 const Table = ({ tableRowData }) => {
 
-    const [showCard, setShowCard] = useState(false);
-    const [selectedRow, setSelectedRow] = useState("");
+    // const [showCard, setShowCard] = useState(false);
+    // const [selectedRow, setSelectedRow] = useState("");
+
     let tableHeader = [
         "Flag",
         "Country Name", 
@@ -14,14 +15,14 @@ const Table = ({ tableRowData }) => {
         "Region"
     ]
 
-    const showDetails = (rowData) => {
-        setShowCard(true);
-        setSelectedRow(rowData)
-    }
+    // const showDetails = (rowData) => {
+    //     setShowCard(true);
+    //     setSelectedRow(rowData)
+    // }
 
-    const closeModal = () => {
-        setShowCard(false);
-    }
+    // const closeModal = () => {
+    //     setShowCard(false);
+    // }
    
     const renderTableHeader = tableHeader.map((rowHeader,index) => {
         return  (
@@ -29,19 +30,19 @@ const Table = ({ tableRowData }) => {
         )    
     })
 
-    const renderTableRow = tableRowData.map((rowData,index) => {
-        return (
-            <tr key={index} className="tableRow" onClick={() => showDetails(rowData)} >
-                <td>
-                    <img src={rowData.flags.png} alt="country" />
-                </td>
-                <td>{rowData.name.common}</td>
-                <td>{rowData.capital}</td>
-                <td>{rowData.population}</td>
-                <td>{rowData.region}</td>
-            </tr>
-        )
-    })
+    // const renderTableRow = tableRowData.map((rowData,index) => {
+    //     return (
+    //         <tr key={index} className="tableRow" onClick={() => showDetails(rowData)} >
+    //             <td>
+    //                 <img src={rowData.flags.png} alt="country" />
+    //             </td>
+    //             <td>{rowData.name.common}</td>
+    //             <td>{rowData.capital}</td>
+    //             <td>{rowData.population}</td>
+    //             <td>{rowData.region}</td>
+    //         </tr>
+    //     )
+    // })
     
     return (
         <div className="tableSection">
@@ -52,10 +53,18 @@ const Table = ({ tableRowData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {renderTableRow}
+                    <tr className="tableRow" >
+                        <td>
+                            <img src={tableRowData.flags.png} alt="country" />
+                        </td>
+                        <td>{tableRowData.name.common}</td>
+                        <td>{tableRowData.capital}</td>
+                        <td>{tableRowData.population}</td>
+                        <td>{tableRowData.region}</td>
+                    </tr>
                 </tbody>
             </table>
-            {
+            {/* {
                 showCard && 
                 <Modal>
                     <span className="closeButton" onClick={closeModal}>
@@ -63,7 +72,7 @@ const Table = ({ tableRowData }) => {
                     </span>
                     {selectedRow.firstName + ' ' + selectedRow.lastName} 
                 </Modal>
-            }
+            } */}
         </div>
     )
 

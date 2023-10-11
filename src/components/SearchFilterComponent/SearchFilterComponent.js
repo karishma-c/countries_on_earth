@@ -59,8 +59,8 @@ const SearchFilterComponent = ({ searchData }) => {
                 </div>
                 <div className="viewElement">
                     <select className="selectViewField" value={selectView} onChange={handleSelectView}>
-                        <option value="table">Card View</option>
-                        <option value="card">Table View</option>
+                        <option value="Card View">Card View</option>
+                        <option value="Table View">Table View</option>
                     </select>
                 </div>
                 <div className='filter-element'>
@@ -76,17 +76,26 @@ const SearchFilterComponent = ({ searchData }) => {
                 </div>
             </div>
             <div className="cardContainer">
-                <Table tableRowData={searchData} />
-            {/* {
-                selectValue ?
-                filteredCountry.map(countryDetails => {
-                    return <CardComponent countryDetails={countryDetails} />
-                })
-                :
-                searchedCountry.map(countryDetails => {
-                    return <CardComponent countryDetails={countryDetails} />
-                })
-            } */}
+                {
+                    selectView == "Table View" ?
+                        selectValue ?
+                        filteredCountry.map(countryDetails => {
+                            return  <Table tableRowData={countryDetails} /> 
+                        })
+                        :
+                        searchedCountry.map(countryDetails => {
+                            return  <Table tableRowData={countryDetails} /> 
+                        })  
+                    :
+                    selectValue ?
+                    filteredCountry.map(countryDetails => {
+                        return <CardComponent countryDetails={countryDetails} />
+                    })
+                    :
+                    searchedCountry.map(countryDetails => {
+                        return <CardComponent countryDetails={countryDetails} />
+                    }) 
+                }
             </div>
         </div>
     )
