@@ -9,7 +9,7 @@ const SearchFilterComponent = ({ searchData }) => {
     const [searchValue, setSearchValue] = useState("");
     const [selectValue, setSelectValue] = useState("");
     const [selectView, setSelectView] = useState("Card View");
-    const [selectSort, setSelectSort] = useState("");
+    const [sortValue, setSortValue] = useState("");
     const [screenSize, setScreenSize] = useState(window.innerWidth);
     const [showModal, setShowModal] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState("");
@@ -41,7 +41,7 @@ const SearchFilterComponent = ({ searchData }) => {
     };
 
     const handleSort = e => {
-        setSelectSort(e.target.value);
+        setSortValue(e.target.value);
     }
 
     const handleModal = (countryData) => {
@@ -52,17 +52,6 @@ const SearchFilterComponent = ({ searchData }) => {
     const closeModal = () => {
         setShowModal(false);
     }
-
-    const filteredCountry = searchData.filter(
-        country => {
-            country.region.toLowerCase() === selectValue 
-            return (
-                country
-                .region.toLowerCase()
-                .includes(selectValue.toLowerCase())
-            )
-        }
-    )
 
     const searchedCountry = searchData.filter(
         country => {
@@ -77,6 +66,28 @@ const SearchFilterComponent = ({ searchData }) => {
             )
         }
     )
+
+    const filteredCountry = searchData.filter(
+        country => {
+            country.region.toLowerCase() === selectValue 
+            return (
+                country
+                .region.toLowerCase()
+                .includes(selectValue.toLowerCase())
+            )
+        }
+    )
+
+    const sortedCountry = searchData.sort((countryA,countryB) => {
+        countryA = countryA.name.common;
+        countryB = countryB.name.common;
+        if(sortValue == "Ascending") {
+            return ((countryA < countryB) ? -1 : ((countryA > countryB) ? 1 : 0));
+        }
+        else { 
+            return ((countryA > countryB) ? -1 : ((countryA < countryB) ? 1 : 0)); 
+        }
+    })
 
     const setDimension = () => {
         setScreenSize(window.innerWidth);
@@ -101,8 +112,8 @@ const SearchFilterComponent = ({ searchData }) => {
                     />
                 </div>
                 <div className="sortElement">
-                    <select className="selectSortField" value={selectSort} onChange={handleSort}>
-                        <option value="">Select Sort</option>
+                    <select className="selectSortField" value={sortValue} onChange={handleSort}>
+                        <option value="">Sort by</option>
                         <option value="Ascending">Ascending</option>
                         <option value="Descending">Descending</option>
                     </select>
@@ -140,14 +151,27 @@ const SearchFilterComponent = ({ searchData }) => {
                             </thead>
                             <tbody>
                                 {
-                                    selectValue ?
+                                    selectValue ? 
                                     filteredCountry.map(countryDetails => {
                                         return  <tr className="tableRow" onClick={() => handleModal(countryDetails)} >
                                             <td className="tableCell" id="tableColumn">
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
                                             <td className="tableCell">{countryDetails.name.common}</td>
-                                            <td className="tableCell">{countryDetails.capital}</td>
+                                            <td className="tableCell">{countryDetails.capital || '-'}</td>
+                                            <td className="tableCell">{countryDetails.population}</td>
+                                            <td className="tableCell">{countryDetails.region}</td>
+                                        </tr>
+                                    })
+                                    :
+                                    sortValue ? 
+                                    sortedCountry.map(countryDetails => {
+                                        return  <tr className="tableRow" onClick={() => handleModal(countryDetails)} >
+                                            <td className="tableCell" id="tableColumn">
+                                                <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
+                                            </td>
+                                            <td className="tableCell">{countryDetails.name.common}</td>
+                                            <td className="tableCell">{countryDetails.capital || '-'}</td>
                                             <td className="tableCell">{countryDetails.population}</td>
                                             <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
@@ -159,7 +183,7 @@ const SearchFilterComponent = ({ searchData }) => {
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
                                             <td className="tableCell">{countryDetails.name.common}</td>
-                                            <td className="tableCell">{countryDetails.capital}</td>
+                                            <td className="tableCell">{countryDetails.capital || '-'}</td>
                                             <td className="tableCell">{countryDetails.population}</td>
                                             <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
@@ -201,6 +225,11 @@ const SearchFilterComponent = ({ searchData }) => {
                     :
                     selectValue ?
                     filteredCountry.map(countryDetails => {
+                        return <CardComponent countryDetails={countryDetails} />
+                    })
+                    :
+                    sortValue ?
+                    sortedCountry.map(countryDetails => {
                         return <CardComponent countryDetails={countryDetails} />
                     })
                     :

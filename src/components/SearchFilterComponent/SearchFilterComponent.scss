@@ -11,7 +11,7 @@
             width: inherit;
             & .searchInputField, & .selectInputField, & .selectViewField, & .selectSortField {
                 font-size:$font-size3;
-                margin: 30px 25px 20px 30px;
+                margin: 30px 20px 20px;
                 padding:15px 0 15px 15px;
                 border: none;
                 border-radius: $border-radius;
@@ -24,16 +24,16 @@
                 color: $header-color;
             }
             & .searchInputField {
-                width: 80%;
+                width: 95%;
             }
             & .selectInputField {
-                width: 60%;
+                width: 80%;
             }
             & .selectViewField {
-                width: 50%;
+                width: 60%;
             }
             & .selectSortField {
-                width: 50%;
+                width: 60%;
             }
         } 
     }
@@ -46,17 +46,26 @@
 
     @media screen and (max-width:480px) {
         & .searchFilterInput {
-            @include flex(column, flex-start, flex-start);
+            @include flex(row, flex-start, flex-start);
             flex-wrap: wrap;
-            & .search-element, & .filter-element {
-                & .searchInputField, & .selectInputField {
+            & .searchElement, & .filterElement, & .sortElement {
+                & .searchInputField, & .selectInputField, & .selectSortField {
                     margin: 15px 0 15px 25px;
                 }
             }
-            & .filter-element {
+            & .filterElement {
                 & .selectInputField {
                     float: left;
                 }
+            }
+            & .searchInputField {
+                width: 70% !important;
+            }
+            & .selectInputField {
+                width: 50% !important;
+            }
+            & .selectSortField {
+                width: 50% !important;
             }
         }
         & .cardContainer {
