@@ -156,8 +156,6 @@ const SearchFilterComponent = ({ searchData }) => {
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
                                             <td className="tableCell" onClick={() => handleModal(countryDetails)} >{countryDetails.name.common}</td>
-                                            {/* <td className="tableCell">{countryDetails.capital || '-'}</td>
-                                            <td className="tableCell">{countryDetails.population}</td> */}
                                             <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
                                     })
@@ -169,8 +167,6 @@ const SearchFilterComponent = ({ searchData }) => {
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
                                             <td className="tableCell" onClick={() => handleModal(countryDetails)} >{countryDetails.name.common}</td>
-                                            {/* <td className="tableCell">{countryDetails.capital || '-'}</td>
-                                            <td className="tableCell">{countryDetails.population}</td> */}
                                             <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
                                     })
@@ -181,8 +177,6 @@ const SearchFilterComponent = ({ searchData }) => {
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
                                             <td className="tableCell" onClick={() => handleModal(countryDetails)} >{countryDetails.name.common}</td>
-                                            {/* <td className="tableCell">{countryDetails.capital || '-'}</td>
-                                            <td className="tableCell">{countryDetails.population}</td> */}
                                             <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
                                     })
