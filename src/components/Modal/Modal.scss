@@ -36,17 +36,24 @@
             font-size: 32px;
             font-weight: $font-weight2;
             color: $primary-color1;
-            padding: 5px 12px;
+            padding: 0;
             font-family: 'Courier New', Courier, monospace;
+            & #closeIcon {
+                stroke: $secondary-color1;
+                &:hover {
+                    border-radius: 5px;
+                    border: 1px solid $secondary-color1;
+                }
+            }
         }
 
         & .modalCard {
             margin: 60px 20px 30px;
             width: 300px;
             height: 420px;
-            background-color: $secondary-color;
+            // background-color: $secondary-color;
             color: $header-color;
-            box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
+            //box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
             border-radius: 5px;
             padding: 0;
     
@@ -68,13 +75,13 @@
                 font-size: $font-size2;
                 font-weight: $font-weight4;
                 margin: 30px 0 20px;
-                padding: 0 10px 0 20px;
+                padding: 0 10px 0 0;
             }
             
             & .population, & .countryRegion, & .countryCapital, & .countrySubRegion, & .countryBorders {
                 font-size: $font-size3;
                 font-weight: $font-weight1;
-                padding: 0 0 8px 20px;
+                padding: 0 0 8px 0;
                 margin: 0;
             }
 
@@ -107,13 +114,26 @@
 }
 
 #light .modalCard {
-    background-color: $secondary-color;
     color: $header-color;
 }
 #dark .modalCard {
-    background-color: $secondary-color1;
     color: $header-color1;
 }  
+
+#light #closeIcon {
+    stroke: $secondary-color1;
+    &:hover {
+        border-radius: 5px;
+        border: 1px solid $secondary-color1;
+    }
+}
+#dark #closeIcon {
+    stroke: $secondary-color;
+    &:hover {
+        border-radius: 5px;
+        border: 1px solid $secondary-color;
+    }
+}
     
 @media (min-width: 320px) and (max-width: 375px) {
 
