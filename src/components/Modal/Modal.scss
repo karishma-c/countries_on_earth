@@ -2,6 +2,7 @@
 @import './../../styles/variables';
 
 .modal {
+    cursor: pointer;
     position: fixed;
     left: 0;
     top: 0;
@@ -88,6 +89,7 @@
             & .countryBorders {
                 @include flex(row,flex-start,center);
                 & b {
+                    padding-right: 5px;
                     padding-bottom: 5px !important;
                 }
             }

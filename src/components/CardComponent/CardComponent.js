@@ -22,7 +22,7 @@ const CardComponent = ({ countryDetails }) => {
             {
                 showModal ?
                 
-                    <Modal>
+                    <Modal closeModal={closeModal}>
                         <span className="closeButton" onClick={closeModal}>
                             <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="26" height="26" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -60,9 +60,9 @@ const CardComponent = ({ countryDetails }) => {
                         <img src={countryDetails.flags.png} alt="country" />
                     </div>
                     <h3 className="countryName">{countryDetails.name.common}</h3>
-                    <h5 className="population"> <b>Population: </b>{countryDetails.population}</h5>
+                    {/* <h5 className="population"> <b>Population: </b>{countryDetails.population}</h5> */}
                     <h5 className="countryRegion"> <b>Region: </b>{countryDetails.region}</h5>
-                    <h5 className="countryCapital"> <b>Capital: </b>{countryDetails.capital || '-'}</h5>
+                    {/* <h5 className="countryCapital"> <b>Capital: </b>{countryDetails.capital || '-'}</h5> */}
                 </div>
             }
         </>

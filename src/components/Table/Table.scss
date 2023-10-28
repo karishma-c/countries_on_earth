@@ -18,12 +18,20 @@
         }
         & .tableRow {
             & #tableColumn {
-                width: 100px;
-                height: 80px;
+                width: 120px;
+                height: 100px;
                 & .rowFlagImage {
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
+                }
+            }
+            .tableCell:nth-child(2) {
+                cursor: pointer;
+                padding-bottom: 2px;
+                text-decoration: underline;
+                &:hover {
+                    text-decoration: none;
                 }
             }
         }
