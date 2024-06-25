@@ -4,8 +4,9 @@ import Table from './../Table/Table';
 import Modal from './../Modal/Modal';
 import './SearchFilterComponent.scss';
 
-const SearchFilterComponent = ({ searchData }) => {
-
+const SearchFilterComponent = (props) => {
+ 
+    console.log(props.data,"countriesData");
     const [searchValue, setSearchValue] = useState("");
     const [selectValue, setSelectValue] = useState("");
     const [selectView, setSelectView] = useState("Card View");
@@ -13,10 +14,11 @@ const SearchFilterComponent = ({ searchData }) => {
     const [screenSize, setScreenSize] = useState(window.innerWidth);
     const [showModal, setShowModal] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState("");
-
+ 
     let tableHeader = [
         "Flag",
         "Country Name", 
+        "Capital",
         "Region"
     ]
 
@@ -51,11 +53,11 @@ const SearchFilterComponent = ({ searchData }) => {
         setShowModal(false);
     }
 
-    const searchedCountry = searchData.filter(
+    const searchedCountry = props.data.filter(
         country => {
             return (
                 country
-                .name.common
+                .name
                 .toLowerCase()
                 .includes(searchValue.toLowerCase()) ||
                 country.region
@@ -65,7 +67,7 @@ const SearchFilterComponent = ({ searchData }) => {
         }
     )
 
-    const filteredCountry = searchData.filter(
+    const filteredCountry = props.data.filter(
         country => {
             country.region.toLowerCase() === selectValue 
             return (
@@ -76,9 +78,9 @@ const SearchFilterComponent = ({ searchData }) => {
         }
     )
 
-    const sortedCountry = searchData.sort((countryA,countryB) => {
-        countryA = countryA.name.common;
-        countryB = countryB.name.common;
+    const sortedCountry = props.data.sort((countryA,countryB) => {
+        countryA = countryA.name;
+        countryB = countryB.name;
         if(sortValue == "Ascending") {
             return ((countryA < countryB) ? -1 : ((countryA > countryB) ? 1 : 0));
         }
@@ -155,7 +157,8 @@ const SearchFilterComponent = ({ searchData }) => {
                                             <td className="tableCell" id="tableColumn">
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
-                                            <td className="tableCell" onClick={() => handleModal(countryDetails)} >{countryDetails.name.common}</td>
+                                            <td className="tableCell" onClick={() => handleModal(countryDetails)} >{countryDetails.name}</td>
+                                            <td className="tableCell">{countryDetails.capital || '--'}</td>
                                             <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
                                     })
@@ -166,7 +169,8 @@ const SearchFilterComponent = ({ searchData }) => {
                                             <td className="tableCell" id="tableColumn">
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
-                                            <td className="tableCell" onClick={() => handleModal(countryDetails)} >{countryDetails.name.common}</td>
+                                            <td className="tableCell" onClick={() => handleModal(countryDetails)} >{countryDetails.name}</td>
+                                            <td className="tableCell">{countryDetails.capital || '--'}</td>
                                             <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
                                     })
@@ -176,7 +180,8 @@ const SearchFilterComponent = ({ searchData }) => {
                                             <td className="tableCell" id="tableColumn">
                                                 <img className="rowFlagImage" src={countryDetails.flags.png} alt="country" />
                                             </td>
-                                            <td className="tableCell" onClick={() => handleModal(countryDetails)} >{countryDetails.name.common}</td>
+                                            <td className="tableCell" onClick={() => handleModal(countryDetails)} >{countryDetails.name}</td>
+                                            <td className="tableCell">{countryDetails.capital || '--'}</td>
                                             <td className="tableCell">{countryDetails.region}</td>
                                         </tr>
                                     })
@@ -197,11 +202,11 @@ const SearchFilterComponent = ({ searchData }) => {
                                         <div className="cardFlagImage">
                                             <img src={selectedCountry.flags.png} alt="country" />
                                         </div>
-                                        <h3 className="countryName"> {selectedCountry.name.common}</h3>
+                                        <h3 className="countryName"> {selectedCountry.name}</h3>
                                         <h5 className="population"> <b>Population: </b>{selectedCountry.population}</h5>
                                         <h5 className="countryRegion"> <b>Region: </b>{selectedCountry.region}</h5>
-                                        <h5 className="countryCapital"> <b>Capital: </b>{selectedCountry.capital || '-'}</h5>
-                                        <h5 className="countrySubRegion"> <b>SubRegion: </b>{selectedCountry.subregion || '-'}</h5>
+                                        <h5 className="countryCapital"> <b>Capital: </b>{selectedCountry.capital || '--'}</h5>
+                                        <h5 className="countrySubRegion"> <b>SubRegion: </b>{selectedCountry.subregion || '--'}</h5>
                                         <div className="countryBorders"> <b>Borders: </b>
                                             <h5 className="borders">
                                                 {

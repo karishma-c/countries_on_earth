@@ -1,24 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from 'axios';
+import React, { useContext } from "react";
 import SearchFilterComponent from './../SearchFilterComponent/SearchFilterComponent'
 import moonIcon from './../../images/icon-moon.png';
 import sunIcon from './../../images/icon-sun.png';
 import { ThemeContext } from "./../App";
+import data from './../../data.json';
 import './Home.scss';
 
 const Home = () => {
 
     const {enableDarkTheme, switchMode} = useContext(ThemeContext);
-    const url = "https://restcountries.com/v3.1/all";
-    const [responseData, setResponseData] = useState([]);
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = () => { 
-        axios.get(url).then(response => {setResponseData(response.data)})
-    }
 
     return (
         <div className="mainContainer">
@@ -44,10 +34,13 @@ const Home = () => {
                     }
                 </button>
             </header>
-            <div className="contentSection">
-                <SearchFilterComponent searchData={responseData} />
-            </div>
-            
+            <div className="contentSection">   
+            {
+                data &&
+                <SearchFilterComponent data={data} />
+            }
+               
+            </div> 
         </div>
     )
 }

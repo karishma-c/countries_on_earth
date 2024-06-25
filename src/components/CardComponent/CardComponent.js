@@ -35,11 +35,11 @@ const CardComponent = ({ countryDetails }) => {
                             <div className="cardFlagImage">
                                 <img src={selectedCountry.flags.png} alt="country" />
                             </div>
-                            <h3 className="countryName"> {selectedCountry.name.common}</h3>
+                            <h3 className="countryName"> {selectedCountry.name}</h3>
                             <h5 className="population"> <b>Population: </b>{selectedCountry.population}</h5>
                             <h5 className="countryRegion"> <b>Region: </b>{selectedCountry.region}</h5>
-                            <h5 className="countryCapital"> <b>Capital: </b>{selectedCountry.capital || '-'}</h5>
-                            <h5 className="countrySubRegion"> <b>SubRegion: </b>{selectedCountry.subregion || '-'}</h5>
+                            <h5 className="countryCapital"> <b>Capital: </b>{selectedCountry.capital || '--'}</h5>
+                            <h5 className="countrySubRegion"> <b>SubRegion: </b>{selectedCountry.subregion || '--'}</h5>
                             <div className="countryBorders"> <b>Borders: </b>
                                 <h5 className="borders">
                                     {
@@ -59,8 +59,21 @@ const CardComponent = ({ countryDetails }) => {
                     <div className="flagImage">
                         <img src={countryDetails.flags.png} alt="country" />
                     </div>
-                    <h3 className="countryName">{countryDetails.name.common}</h3>
+                    <h3 className="countryName">{countryDetails.name}</h3>
                     <h5 className="countryRegion"> <b>Region: </b>{countryDetails.region}</h5>
+                    <h5 className="countryCapital"> <b>Capital: </b>{countryDetails.capital || '--'}</h5>
+                    <div className="countryCurrency"> <b>Currency: </b>
+                                <h5 className="currencies">
+                                    {
+                                        countryDetails.currencies ? 
+                                        countryDetails.currencies.map(currency => {
+                                            return currency.name
+                                            })
+                                        :
+                                        '--'    
+                                    }
+                                </h5>
+                            </div>
                 </div>
             }
         </>

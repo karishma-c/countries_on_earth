@@ -79,7 +79,7 @@
                 padding: 0 10px 0 0;
             }
             
-            & .population, & .countryRegion, & .countryCapital, & .countrySubRegion, & .countryBorders {
+            & .population, & .countryRegion, & .countryCapital, & .countrySubRegion, & .countryBorders, & .countryCapital {
                 font-size: $font-size3;
                 font-weight: $font-weight1;
                 padding: 0 0 8px 0;
@@ -90,11 +90,11 @@
                 @include flex(row,flex-start,center);
                 & b {
                     padding-right: 5px;
-                    padding-bottom: 5px !important;
                 }
             }
             .borders {
                 margin: 0;
+                font-size: $font-size3;
                 font-weight: $font-weight1;
             }
         }

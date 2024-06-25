@@ -5,7 +5,7 @@
     cursor: pointer;
     margin: 0 20px 50px 30px;
     width: 250px;
-    height: 280px;
+    height: 300px;
     background-color: $secondary-color;
     color: $header-color;
     border-radius: $border-radius;
@@ -32,11 +32,23 @@
         padding: 0 10px 0 20px;
     }
     
-    & .population, & .countryRegion, & .countryCapital {
+    & .population, & .countryRegion, & .countryCapital, & .countryCurrency {
         font-size: $font-size3;
         font-weight: $font-weight1;
         padding: 0 0 8px 20px;
         margin: 0;
+    }
+
+    & .countryCurrency {
+        @include flex(row,flex-start,center);
+        & b {
+            padding-right: 5px;
+        }
+    }
+    .currencies {
+        margin: 0;
+        font-size: $font-size3;
+        font-weight: $font-weight1;
     }
 }
 
