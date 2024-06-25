@@ -6,7 +6,6 @@ import './SearchFilterComponent.scss';
 
 const SearchFilterComponent = (props) => {
  
-    console.log(props.data,"countriesData");
     const [searchValue, setSearchValue] = useState("");
     const [selectValue, setSelectValue] = useState("");
     const [selectView, setSelectView] = useState("Card View");
